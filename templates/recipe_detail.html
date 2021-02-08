@@ -1,15 +1,59 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+      integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+      crossorigin="anonymous"
+    />
     <title>Document</title>
-</head>
-<body>
-    <h1>{{ recipe.title }}</h1>
-    <h3>By <a href="/authors/{{recipe.author.id}}">{{recipe.author.author_name}}</a></h3>
-    <h3>Cooking Time: {{recipe.approx_time}}</h3>
-    <h4>Overview: {{recipe.description}}</h4>
-    <p>Cooking Instructions: {{recipe.instructions}}</p>
-</body>
+  </head>
+  <body>
+    <h1></h1>
+    <h3></h3>
+    <p></p>
+
+    <!-- <div class="card" style="width: 500px">
+      <div class="card-body">
+        <h1 class="card-title">{{ recipe.title }}</h1>
+        <h6 class="card-subtitle mb-2 text-muted">
+          By
+          <a href="/authors/{{recipe.author.id}}"
+            >{{recipe.author.author_name}}</a
+          >
+        </h6>
+        <h3 class="card-subtitle mb-2 text-muted">
+          Cooking Time: {{recipe.approx_time}}
+        </h3>
+        <h4 class="card-subtitle mb-2 text-muted">
+          Overview: {{recipe.description}}
+        </h4>
+        <p class="card-text">Cooking Instructions: {{recipe.instructions}}</p>
+      </div>
+    </div> -->
+
+    <div class="card">
+      <h1 class="card-header">{{ recipe.title }}</h1>
+      <div class="card-body">
+        <h5 class="card-title">
+          By
+          <a href="/authors/{{recipe.author.id}}"
+            >{{recipe.author.author_name}}</a
+          >
+        </h5>
+        <h3 class="card-subtitle mb-2 text-muted">
+            Cooking Time: {{recipe.approx_time}}
+        </h3>
+        <h4 class="card-subtitle mb-2 text-muted">
+            Overview: {{recipe.description}}
+        </h4>
+        <p class="card-text">
+        Cooking Instructions: {{recipe.instructions}}
+        </p>
+      </div>
+    </div>
+  </body>
 </html>
