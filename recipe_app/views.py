@@ -23,7 +23,7 @@ def author_details(request, author_id):
 
 
 @login_required
-@user_passes_test(lambda user: user.is_staff, login_url ='homepage')
+# @user_passes_test(lambda user: user.is_staff, login_url='homepage')
 def add_author(request):
     if request.method == 'POST':
         form = AddAuthorForm(request.POST)
@@ -32,7 +32,7 @@ def add_author(request):
         
         #if request.user.is_staff:
     form = AddAuthorForm()
-    return render(request, 'generic_forms.html', {'form':form})
+    return render(request, 'author_form.html', {'form':form})
 
 
 @login_required
