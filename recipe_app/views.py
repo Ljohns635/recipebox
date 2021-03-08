@@ -3,8 +3,9 @@ from recipe_app.models import Author, RecipeItems
 
 # Create your views here.
 def index_view(request):
+    message = 'Jacob is here'
     recipes = RecipeItems.objects.all()
-    return render(request, 'index.html', {'heading': 'Welcome to our RecipeBox', 'recipes': recipes})
+    return render(request, 'index.html', {'heading': 'Welcome to our RecipeBox', 'recipes': recipes, 'message':message})
 
 def recipe_details(request, post_id):
     recipe = RecipeItems.objects.get(id=post_id)
