@@ -1,5 +1,11 @@
+
+{% if request.user.author == edit.author or request.user.is_staff %}
+<h1>Edit</h1>
 <form action='' method="post">
     {% csrf_token %}
     {{form.as_p}}
     <input type="submit" value="SUBMIT!">
 </form>
+{% else %}
+<h1>You are not the User who Created this Recipe nor are you Admin</h1>
+{% endif %}

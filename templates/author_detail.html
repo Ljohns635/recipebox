@@ -23,9 +23,16 @@
     <div class="card" style="width: 18rem">
       <ul class="list-group list-group-flush">
         {% for item in recipes %}
+        {% if request.user.is_anonymous %}
         <li class="list-group-item"><a href="/recipes/{{item.id}}/">{{item.title}}</a></li>
+        {% else %}
+        <li class="list-group-item"><a href="/recipes/{{item.id}}/">{{item.title}}</a><button>Favorite</button></li>
+        {% endif %}
         {% endfor %}
       </ul>
+    </div>
+    <div>
+      <h3>Favorites:</h3>
     </div>
     
   </body>

@@ -7,8 +7,9 @@ from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.decorators import login_required, user_passes_test
 
 # Create your views here.
+
 def index_view(request):
-    message = 'Jacob is here'
+    message = request.user
     recipes = RecipeItems.objects.all()
     return render(request, 'index.html', {'heading': 'Welcome to our RecipeBox', 'recipes': recipes, 'message':message})
 
@@ -84,8 +85,8 @@ def edit_view(request, post_id):
         'approx_time': edit.approx_time,
         'instructions': edit.instructions,
         })
-    context.update({'form': form})
-    return render(request, 'generic_forms.html', context)
+    context.update({'form': form, 'edit': edit})
+    return render(request, 'edit.html', context)
 
 # def signup_view(request):
 #     if request.method == 'POST':
@@ -119,4 +120,4 @@ def login_view(request):
 
 def logout_view(request):
     logout(request)
-    return HttpResponseRedirect(reverse('homepage'))
+    return HttpResponseRedirect(reverse('login'))

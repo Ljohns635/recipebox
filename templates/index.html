@@ -15,12 +15,22 @@
     <div class="jumbotron">
         <h1 class="display-4">{{ heading }}</h1>
         <h2>{{message}}</h2>
+        
         <p class="lead">Look through our awesome recipes below:</p>
         <hr class="my-4">
         <ul>
-            {% for item in recipes %}
+          {% for item in recipes %}
+          {% if request.user.is_anonymous %}
             <li>
+                <a href="recipes/{{item.id}}">{{item.title}}</a> --by
+                <a href="authors/{{item.author.id}}">{{item.author.author_name}}</a>
             </li>
+            {% else %}
+            <li>
+              <a href="recipes/{{item.id}}">{{item.title}}</a> --by 
+              <a href="authors/{{item.author.id}}">{{item.author.author_name}}</a><button>Favorite</button>
+            </li>
+            {% endif %}
             {% endfor %}
         </ul>
         <p class="lead">
