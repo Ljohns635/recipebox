@@ -20,8 +20,6 @@
         <ul>
             {% for item in recipes %}
             <li>
-                <a href="recipes/{{item.id}}">{{item.title}}</a> --by
-                <a href="authors/{{item.author.id}}">{{item.author.author_name}}</a>
             </li>
             {% endfor %}
         </ul>
@@ -30,5 +28,8 @@
             <span><a href="addrecipe/">Add Recipe</a></span>
         </p>
     </div>
+    <!-- <p><a href="/signup">Sign Up</a></p> -->
+    <p><a href="/login">Login</a></p>
+    <p><a href="/logout">Logout</a></p>
   </body>
 </html>
