@@ -1,6 +1,7 @@
 
 {% if request.user.author == edit.author or request.user.is_staff %}
 <h1>Edit</h1>
+<a href="/"><button>Home</button></a>
 <form action='' method="post">
     {% csrf_token %}
     {{form.as_p}}

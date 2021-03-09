@@ -14,8 +14,11 @@
   <body>
     <div class="jumbotron">
         <h1 class="display-4">{{ heading }}</h1>
+        {% if message.is_anonymous %}
         <h2>{{message}}</h2>
-        
+        {% else %}
+        <a href="/authors/{{message.id}}/"><h2>{{message}}</h2></a>
+        {% endif %}
         <p class="lead">Look through our awesome recipes below:</p>
         <hr class="my-4">
         <ul>
@@ -28,7 +31,9 @@
             {% else %}
             <li>
               <a href="recipes/{{item.id}}">{{item.title}}</a> --by 
-              <a href="authors/{{item.author.id}}">{{item.author.author_name}}</a><button>Favorite</button>
+              <a href="authors/{{item.author.id}}">{{item.author.author_name}}</a>
+            </br>
+              <a href='/like/{{item.id}}'><button>Favorite</button></a>
             </li>
             {% endif %}
             {% endfor %}

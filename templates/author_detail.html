@@ -12,6 +12,7 @@
     <title>Document</title>
   </head>
   <body>
+    <a href="/"><button>Home</button></a>
       <div class="jumbotron jumbotron-fluid">
           <div class="container">
               <h1 class="display-4">{{author.author_name}}</h1>
@@ -26,13 +27,17 @@
         {% if request.user.is_anonymous %}
         <li class="list-group-item"><a href="/recipes/{{item.id}}/">{{item.title}}</a></li>
         {% else %}
-        <li class="list-group-item"><a href="/recipes/{{item.id}}/">{{item.title}}</a><button>Favorite</button></li>
+        <li class="list-group-item"><a href="/recipes/{{item.id}}/">{{item.title}}</a><a href="/like/{{item.id}}/"><button>Favorite</button></a></li>
         {% endif %}
         {% endfor %}
       </ul>
     </div>
     <div>
       <h3>Favorites:</h3>
+      {%for item in liked_recipes%}
+      <p>Recipe Title: <a href="/recipes/{{item.id}}/">{{item.title}}</a>
+        Author: <a href="/authors/{{item.author.id}}/">{{item.author}}</a></p>
+      {% endfor %}
     </div>
     
   </body>

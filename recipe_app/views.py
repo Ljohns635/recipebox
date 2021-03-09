@@ -22,7 +22,14 @@ def recipe_details(request, post_id):
 def author_details(request, author_id):
     author_obj = Author.objects.get(id=author_id)
     recipes = RecipeItems.objects.filter(author=author_obj)
-    return render(request, 'author_detail.html', {'author': author_obj, 'recipes': recipes})
+    liked_recipes = author_obj.liked_recipe.all()
+    return render(request, 'author_detail.html', {'author': author_obj, 'recipes': recipes, 'liked_recipes': liked_recipes})
+
+
+def like_view(request, post_id):
+    recipe_liked = RecipeItems.objects.get(id=post_id)
+    request.user.author.liked_recipe.add(recipe_liked)
+    return HttpResponseRedirect('/')
 
 
 @login_required

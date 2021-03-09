@@ -12,6 +12,8 @@
     <title>Document</title>
   </head>
   <body>
+    <a href="/"><button>Home</button></a>
+    <a href="/edit/{{recipe.id}}"><button>Edit</button></a>
     <h1></h1>
     <h3></h3>
     <p></p>
@@ -34,7 +36,7 @@
         <p class="card-text">Cooking Instructions: {{recipe.instructions}}</p>
       </div>
     </div> -->
-
+{% if request.user.is_anonymous %}
     <div class="card">
       <h1 class="card-header">{{ recipe.title }}</h1>
       <div class="card-body">
@@ -55,5 +57,27 @@
         </p>
       </div>
     </div>
+    {% else %}
+    <div class="card">
+      <h1 class="card-header">{{ recipe.title }}</h1>  <a href='/like/{{recipe.id}}'><button>Favorite</button></a>
+      <div class="card-body">
+        <h5 class="card-title">
+          By
+          <a href="/authors/{{recipe.author.id}}"
+            >{{recipe.author.author_name}}</a
+          >
+        </h5>
+        <h3 class="card-subtitle mb-2 text-muted">
+            Cooking Time: {{recipe.approx_time}}
+        </h3>
+        <h4 class="card-subtitle mb-2 text-muted">
+            Overview: {{recipe.description}}
+        </h4>
+        <p class="card-text">
+        Cooking Instructions: {{recipe.instructions}}
+        </p>
+      </div>
+    </div>
+    {% endif %}
   </body>
 </html>
