@@ -19,11 +19,11 @@
 
         <!-- Links -->
         <ul class="navbar-nav">
-        {% if not request.user.is_authenticated %}
+          {% if not request.user.is_authenticated %}
           <li class="nav-item">
             <a class="nav-link" href="/login">Login</a>
           </li>
-        {% endif %}
+          {% endif %}
           <li class="nav-item">
             <a class="nav-link" href="/addrecipe">Add Recipe</a>
           </li>
@@ -41,10 +41,16 @@
           {% endif %}
         </ul>
       </nav>
-      
+
       <div class="card">
         <h1 class="card-header">{{ recipe.title }}</h1>
-        <p class="container"><a href="/">Go Home</a></p>
+        {% if user.is_authenticated %}
+        <span><a href="/edit/{{recipe.id}}">(Edit)</a></span>
+        <span>
+          <a href="/favorite/{{recipe.id}}">(Add to favorites)</a>
+        </span>
+        {% endif %}
+        <span ><a href="/">Go Home</a></span>
         <div class="card-body">
           <h5 class="card-title">
             By
