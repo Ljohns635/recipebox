@@ -21,16 +21,20 @@ def author_details(request, author_id):
     recipes = RecipeItems.objects.filter(author=author_obj)
     return render(request, 'author_detail.html', {'author': author_obj, 'recipes': recipes})
 
-
 @login_required
-# @user_passes_test(lambda user: user.is_staff, login_url='homepage')
 def add_author(request):
     if request.method == 'POST':
         form = AddAuthorForm(request.POST)
-        form.save()
+        if form.is_valid():
+            data = form.cleaned_data
+            new_user = User.objects.create_user(
+                username=data['username'], password=data['password']
+            )
+            Author.objects.create(
+                author_name=data['author_name'], author_bio=data['author_bio'], user=new_user
+            )
         return HttpResponseRedirect(reverse('homepage'))
         
-        #if request.user.is_staff:
     form = AddAuthorForm()
     return render(request, 'author_form.html', {'form':form})
 
@@ -55,25 +59,6 @@ def add_recipe(request):
     form = AddRecipeForm()
     context.update({'form':form})
     return render(request, 'recipe_forms.html', context)
-
-
-# def signup_view(request):
-#     if request.method == 'POST':
-#         form = SignupForm(request.POST)
-#         if form.is_valid():
-#             data = form.cleaned_data
-#             new_user = User.objects.create_user(
-#                 username=data['username'], password=data['password']
-#             )
-#             Author.objects.create(
-#                 author_name=data['author_name'], author_bio=data['author_bio'], user=new_user
-#             )
-#             return HttpResponseRedirect(reverse('homepage'))    
-
-
-#     form = SignupForm()
-#     return render(request, 'generic_forms.html', {'form': form})
-
 
 def login_view(request):
     if request.method == 'POST':
