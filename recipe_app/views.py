@@ -38,7 +38,7 @@ def add_author(request):
     form = AddAuthorForm()
     return render(request, 'author_form.html', {'form':form})
 
-
+#Staff user should be able to create a recipe for any of the authors not themselves
 @login_required
 def add_recipe(request):
     context = {}
@@ -53,7 +53,6 @@ def add_recipe(request):
                 approx_time = data['approx_time'],
                 instructions = data['instructions']
             )
-
             return HttpResponseRedirect(reverse('recipe_details', args=[new_item.id]))
     
     form = AddRecipeForm()

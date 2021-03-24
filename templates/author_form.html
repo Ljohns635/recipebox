@@ -20,9 +20,11 @@
 
         <!-- Links -->
         <ul class="navbar-nav">
+            {% if not request.user.is_authenticated %}
           <li class="nav-item">
             <a class="nav-link" href="/login">Login</a>
           </li>
+        {% endif %}
           <li class="nav-item">
             <a class="nav-link" href="/addrecipe">Add Recipe</a>
           </li>
