@@ -43,6 +43,7 @@
       </nav>
 
       <div class="card">
+        <div class="card-body">
         <h1 class="card-header">{{ recipe.title }}</h1>
         {% if user.is_authenticated %}
         <span><a href="/edit/{{recipe.id}}">(Edit)</a></span>
@@ -50,8 +51,7 @@
           <a href="/favorite/{{recipe.id}}">(Add to favorites)</a>
         </span>
         {% endif %}
-        <span ><a href="/">Go Home</a></span>
-        <div class="card-body">
+        <span ><a href="/">(Go Home)</a></span>
           <h5 class="card-title">
             By
             <a href="/authors/{{recipe.author.id}}"

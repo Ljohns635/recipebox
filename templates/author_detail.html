@@ -45,11 +45,10 @@
       <div class="jumbotron text-center p-3 my-3 bg-dark text-white">
         <h1 class="display-4">{{author.author_name}}</h1>
         <h3 class="lead">{{author.author_bio}}</h3>
-        <p class="lead">All recipes below:</p>
       </div>
 
       <div class="card" >
-      <span><a href="/favorites">(My Favorites)</a></span>
+      <h3>All your recipes below:</h3>
         <ul class="list-group list-group-flush">
           {% for item in recipes %}
           <li class="list-group-item">
@@ -58,14 +57,18 @@
           {% endfor %}
         </ul>
       </div>
-      
-      <div>
+
+      <div class="card" >
       <h3>Favorites:</h3>
-      {%for item in favorite_view %}
-      <p>Recipe Title: <a href="/recipes/{{item.id}}/">{{item.title}}</a>
-        Author: <a href="/authors/{{item.author.id}}/">{{item.author}}</a></p>
-      {% endfor %}
-    </div>
+        <ul class="list-group list-group-flush">
+          {% for item in favorite_view %}
+          <li class="list-group-item">
+            <a href="/recipes/{{item.id}}/">{{item.title}}</a> --
+            by <a href="/authors/{{item.author.id}}/">{{item.author}}</a></p>
+          </li>
+          {% endfor %}
+        </ul>
+      </div>
 
       <div class="card-footer text-muted p-3 my-3 bg-dark text-center">
         Copyright &copy; Latisha Johnson
