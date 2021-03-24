@@ -11,7 +11,6 @@
     />
     <title>Document</title>
   </head>
-
   <body>
     <div class="container">
       <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
@@ -37,23 +36,21 @@
           </li>
         </ul>
       </nav>
+
       <div class="jumbotron text-center p-3 my-3 bg-dark text-white">
-        <h1>Add Author</h1>
-        <p>Add An Author to the forum!</p>
+        <h1>Add Recipe</h1>
+        <p>Add your recipe below!</p>
         <img
           class="card-img-top"
-          src="{% static 'img/recipe3.jpg' %}"
+          src="{% static 'img/recipe5.jpg' %}"
           alt="Recipe image"
           height="400"
         />
-        {% if request.user.is_staff %}
         <form action="" method="POST">
           {% csrf_token %} {{form.as_p}}
-          <input type="submit" value="Submit" />
+          {% comment %} <input type="submit" value="Submit" class="form-control"/> {% endcomment %}
+          <button type="submit" class="btn btn-outline-light form-control">Submit</button>
         </form>
-        {% else %}
-        <p>Access Denied: Admin Access Only!</p>
-        {% endif %}
       </div>
 
       <div class="card-footer text-muted bg-dark text-center">

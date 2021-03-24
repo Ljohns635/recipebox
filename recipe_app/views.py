@@ -54,7 +54,7 @@ def add_recipe(request):
     
     form = AddRecipeForm()
     context.update({'form':form})
-    return render(request, 'generic_forms.html', context)
+    return render(request, 'recipe_forms.html', context)
 
 
 # def signup_view(request):
